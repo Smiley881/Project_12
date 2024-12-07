@@ -10,13 +10,13 @@
         h1 {
             font-size: 80px
         }
-        .margin-first {
+        .padding-first {
             padding: 120px 0px 0px 150px
         }
-        .margin-second {
+        .padding-second {
             padding: 50px 0px 0px 150px
         }
-        .margin-left {
+        .padding-left {
             margin-left: 150px
         }
 </style>
@@ -24,14 +24,18 @@
 <body><form method="post">
     <h1 align="center"> WeatherTracker </h1>
     <p align="center">Готовитесь к поездке? Сравните прогноз и планируйте своё путешествие с уверенностью.</p>
-    <p class="margin-first">
+    <p class="padding-first">
         Город, с которого начнёте путешествие:
     </p>
-    <input type="text" id="city_start" name="city_start" class="margin-left" required>
-    <p class="margin-second">
+    <input type="text" id="city_start" name="city_start" class="padding-left" required>
+    <p class="padding-second">
         Город, в котором закончите путешествие:
     </p>
-    <input type="text" id="city_end" name="city_end" class="margin-left" required>
+    <input type="text" id="city_end" name="city_end" class="padding-left" required>
+    <p class="padding-second">
+        Через сколько дней вы окажетесь в конечной точке:
+    </p>
+    <input type="number" id="forecast_day" name="forecast_day" class="padding-left" required>
     <button type="submit">Посмотреть прогноз</button>
 </form>
 </body>
