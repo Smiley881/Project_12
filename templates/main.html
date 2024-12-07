@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>WeatherTracker</title>
+    <style>
+        body {
+            font-family: 'Arial';
+        }
+        h1 {
+            font-size: 80px
+        }
+        .margin-first {
+            padding: 120px 0px 0px 150px
+        }
+        .margin-second {
+            padding: 50px 0px 0px 150px
+        }
+        .margin-left {
+            margin-left: 150px
+        }
+</style>
 </head>
-<body>
-$END$
+<body><form method="post">
+    <h1 align="center"> WeatherTracker </h1>
+    <p align="center">Готовитесь к поездке? Сравните прогноз и планируйте своё путешествие с уверенностью.</p>
+    <p class="margin-first">
+        Город, с которого начнёте путешествие:
+    </p>
+    <input type="text" id="city_start" name="city_start" class="margin-left" required>
+    <p class="margin-second">
+        Город, в котором закончите путешествие:
+    </p>
+    <input type="text" id="city_end" name="city_end" class="margin-left" required>
+    <button type="submit">Посмотреть прогноз</button>
+</form>
 </body>
 </html>
