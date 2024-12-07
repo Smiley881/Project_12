@@ -24,15 +24,17 @@ def get_forecast(api_key, city_key):
     res = requests.get(f'http://dataservice.accuweather.com/forecasts/v1/daily/5day/{city_key}', params={
         'apikey': api_key,
         'language': 'ru-ru',
-        'details': True
+        'details': True,
+        'metric': True
     }).json()
     with open('data/forecast.json', 'w') as file:
         json.dump(res, file)
 
 if __name__ == '__main__':
     # app.run(debug=True)
-    # API_KEY = 'fX0YccRpvIqqAJyDbwsBEtDop7OGrCbn'
-    # city_key = get_key_by_city(API_KEY, 'Москва')
-    # get_forecast(API_KEY, city_key)
+    API_KEY = 'fX0YccRpvIqqAJyDbwsBEtDop7OGrCbn'
+    city_key = get_key_by_city(API_KEY, 'Москва')
+    get_forecast(API_KEY, city_key)
+
 
 
