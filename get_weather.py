@@ -21,8 +21,13 @@ def get_forecast(api_key, city_key):
         json.dump(res, file)
 
 def check_bad_weather(city_key, day_forecast):
+    """ Оценивает погоду в точке назначения и возвращает советы,
+    погодные значения и уровень неблагоприятности погоды """
+    # Чтение файла с погодой
     with open(f'data/forecast_{city_key}.json') as file:
         content = json.load(file)
+
+    # Вывод погодных метрик и сохранение в словаре
     temp_min = content['DailyForecasts'][day_forecast]['Temperature']['Minimum']['Value']
     temp_max = content['DailyForecasts'][day_forecast]['Temperature']['Maximum']['Value']
     temp_avg = round((temp_max + temp_min) / 2, 2)
