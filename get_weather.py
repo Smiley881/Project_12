@@ -1,4 +1,5 @@
 import requests, json
+from datetime import datetime
 
 def get_key_by_city(api_key, city):
     """ Ищет ключ города по названию, с помощью которого будем получать прогноз """
@@ -17,14 +18,15 @@ def get_forecast(api_key, city_key):
         'details': True,
         'metric': True
     }).json()
-    with open(f'data/forecast_{city_key}.json', 'w') as file:
+
+    with open(f'data/forecast_{city_key}_{datetime.today().date()}', 'w') as file:
         json.dump(res, file)
 
 def check_bad_weather(city_key, day_forecast):
     """ Оценивает погоду в точке назначения и возвращает советы,
     погодные значения и уровень неблагоприятности погоды """
     # Чтение файла с погодой
-    with open(f'data/forecast_{city_key}.json') as file:
+    with open(f'data/forecast_{city_key}_{datetime.today().date()}') as file:
         content = json.load(file)
 
     # Вывод погодных метрик и сохранение в словаре
@@ -132,4 +134,3 @@ def check_bad_weather(city_key, day_forecast):
         advices += f'{count_advices+1}. Ожидается очень сильный ливень.\n'
 
     return advices, metrics, points
-
