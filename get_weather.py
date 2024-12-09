@@ -19,14 +19,14 @@ def get_forecast(api_key, city_key):
         'metric': True
     }).json()
 
-    with open(f'data/forecast_{city_key}_{datetime.today().date()}', 'w') as file:
+    with open(f'data/forecast_{city_key}_{datetime.today().date()}.json', 'w') as file:
         json.dump(res, file)
 
 def check_bad_weather(city_key, day_forecast):
     """ Оценивает погоду в точке назначения и возвращает советы,
     погодные значения и уровень неблагоприятности погоды """
     # Чтение файла с погодой
-    with open(f'data/forecast_{city_key}_{datetime.today().date()}') as file:
+    with open(f'data/forecast_{city_key}_{datetime.today().date()}.json') as file:
         content = json.load(file)
 
     # Вывод погодных метрик и сохранение в словаре
@@ -52,7 +52,7 @@ def check_bad_weather(city_key, day_forecast):
 
     # Оценка температуры
     if temp_avg <= -35 or temp_avg >= 40:
-        points += 10
+        points += 20
         advices += '1. В точке назначения будет экстремальный показатель температуры!\n'
         count_advices += 1
     elif -35 < temp_avg <= -20:
@@ -61,7 +61,7 @@ def check_bad_weather(city_key, day_forecast):
         count_advices += 1
     elif -20 < temp_avg <= -5:
         points += 4
-        advices += '1. В точке назначения будет прохладно.\n'
+        advices += '1. В точке назначения будет холодно.\n'
         count_advices += 1
     elif 31 > temp_avg >= 25:
         points += 4
@@ -73,12 +73,12 @@ def check_bad_weather(city_key, day_forecast):
         count_advices += 1
 
     # Оценка влажности
-    if 70 < hum_avg < 85:
+    if 70 < hum_avg < 90:
         points += 3
-        advices += f'{count_advices+1}. Влажность будет чуть выше среднего.\n'
+        advices += f'{count_advices+1}. Влажность будет чуть выше нормы.\n'
         count_advices += 1
-    elif hum_avg >= 85:
-        points += 7
+    elif hum_avg >= 90:
+        points += 9
         advices += f'{count_advices+1}. Влажность будет значительно выше нормы.\n'
         count_advices += 1
     elif 15 <= hum_avg < 30:
@@ -105,7 +105,7 @@ def check_bad_weather(city_key, day_forecast):
         count_advices += 1
 
     # Оценки снежных осадков
-    if 5 <= snow < 19:
+    if 0 < snow < 19:
         points += 2
         advices += f'{count_advices+1}. В точке назначения будет наблюдаться легкий снегопад.\n'
         count_advices += 1
@@ -123,7 +123,7 @@ def check_bad_weather(city_key, day_forecast):
         count_advices += 1
 
     # Оценка дождей
-    if 3 <= rain < 15:
+    if 0 < rain < 15:
         points += 4
         advices += f'{count_advices+1}. В точке назначения будет пасмурная погода, возможен дождь.\n'
     elif 15 <= rain < 50:

@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>WeatherTracker</title>
+    <style>
+        body {
+            font-family: 'Arial';
+        }
+        h1 {
+            font-size: 80px
+        }
+        .columns {
+            weight: 50%;
+            column-count: 2;
+        }
+        .padding-first {
+            padding: 120px 0px 0px 150px
+        }
+        .padding-left {
+            margin-left: 150px
+        }
+    </style>
 </head>
-<body>
-$END$
+<body><form method="post">
+    <h1 align="center"> WeatherTracker </h1>
+    <p align="center">Готовитесь к поездке? Сравните прогноз и планируйте своё путешествие с уверенностью.</p>
+    <article class="columns">
+        <h2>{{ city_start }}</h2>
+        <p>
+            <b>Температура</b>: {{ temp_start }}<br>
+            <b>Влажность</b>: {{ hum_start }}%<br>
+            <b>Скорость ветра</b>: {{ speed_wind_start }} км/ч<br>
+            <b>Дождь</b>: {{ rain_start }} мм<br>
+            <b>Снег</b>: {{ snow_start }} см
+        </p>
+        <h2>{{ city_end }}</h2>
+        <p>
+            <b>Температура</b>: {{ temp_end }}<br>
+            <b>Влажность</b>: {{ hum_end }}%<br>
+            <b>Скорость ветра</b>: {{ speed_wind_end }} км/ч<br>
+            <b>Дождь</b>: {{ rain_end }} мм<br>
+            <b>Снег</b>: {{ snow_end }} см
+        </p>
+    </article>
+    <h2>Прогноз:</h2>
+    <p>{{ result }}</p>
+    <h2>Советы</h2>
+    <p>{{ advices }}</p>
+</form>
 </body>
 </html>
